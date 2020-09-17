@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(ORB_SLAM2_With_Maps-Odom)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -50,13 +50,12 @@ ${Boost_LIBRARIES}
 )
 
 
-add_executable(RGBD
+add_executable(${PROJECT_NAME}
 src/ros_rgbd.cc
 src/Publisher/pointCloudPubliser.cpp
 )
-add_dependencies(RGBD ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(RGBD
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  target_link_libraries(RGBD
-${LIBS}
+  ${LIBS}
 )
